@@ -1,3 +1,38 @@
+"""
+Problema 1
+"""
+
+def get_largest_prime_below(n):
+    numar_de_testat = n - 1
+    numaram_divizorii = 0
+    ok = True
+
+    while ok:
+        for divizor in range(2, numar_de_testat):
+            if numar_de_testat % divizor == 0:
+                numaram_divizorii += 1  # = numaram_divizorii = numaram_divizorii + 1
+
+        if numaram_divizorii == 0:
+            return numar_de_testat
+        else:
+            numar_de_testat = numar_de_testat - 1
+            numaram_divizorii = 0
+
+
+def test_get_largest_below():
+    assert get_largest_prime_below(50) == 47
+    assert get_largest_prime_below(100) == 97
+    assert get_largest_prime_below(20) == 19
+    assert get_largest_prime_below(60) == 59
+
+
+test_get_largest_below()
+
+
+"""
+Problema 2
+"""
+
 from datetime import date
 
 today = date.today()
@@ -72,8 +107,30 @@ def get_age_in_days(birthday):
 
 
 def test_get_age_in_days():
-    b = input('Introdu data nasterii in formatul DD/MM/YYYY, separata prin "/": ')
-    print(get_age_in_days(b))
+    assert get_age_in_days('22/11/2001') == 7257
+    assert get_age_in_days('12/01/2002') == 7206
+    assert get_age_in_days('23/05/1969') == 19097
 
 
 test_get_age_in_days()
+
+
+"""
+Problema 3
+"""
+
+
+def get_leap_years(start, end):
+    ani_bisecti = []
+    for i in range(start, end + 1):
+        if i % 400 == 0 or i % 100 != 0 and i % 4 == 0:
+            ani_bisecti.append(i)
+    return ani_bisecti
+
+
+def test_get_leap_years():
+    assert get_leap_years(1, 10) == [4, 8]
+    assert get_leap_years(2000, 2016) == [2000, 2004, 2008, 2012, 2016]
+    assert get_leap_years(1882, 1906) == [1884, 1888, 1892, 1896, 1904]
+
+test_get_leap_years()
