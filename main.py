@@ -26,8 +26,6 @@ def test_get_largest_below():
     assert get_largest_prime_below(60) == 59
 
 
-test_get_largest_below()
-
 
 """
 Problema 2
@@ -109,10 +107,8 @@ def get_age_in_days(birthday):
 def test_get_age_in_days():
     assert get_age_in_days('22/11/2001') == 7257
     assert get_age_in_days('12/01/2002') == 7206
-    assert get_age_in_days('23/05/1969') == 19097
+    assert get_age_in_days('23/06/1969') == 19097
 
-
-test_get_age_in_days()
 
 
 """
@@ -133,4 +129,25 @@ def test_get_leap_years():
     assert get_leap_years(2000, 2016) == [2000, 2004, 2008, 2012, 2016]
     assert get_leap_years(1882, 1906) == [1884, 1888, 1892, 1896, 1904]
 
-test_get_leap_years()
+
+
+
+def main():
+    a = input("""
+    Alegeti:
+    1. Pentru a gasi cel mai mare numar prim sub un numar
+    2. Pentru a afla ziua nasterii in zile
+    3. Pentru a afla anii bisecti intr-o perioada
+    4. Pentru a iesi 
+    """)
+    while a != '4':
+        if a == '1':
+            test_get_largest_below()
+        elif a == '2':
+            test_get_age_in_days()
+        elif a == '3':
+            test_get_leap_years()
+
+
+if __name__ == '__main__':
+    main()
