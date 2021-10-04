@@ -2,7 +2,11 @@
 Problema 1
 """
 
+
 def get_largest_prime_below(n):
+    if n <= 2:
+        return None
+
     numar_de_testat = n - 1
     numaram_divizorii = 0
     ok = True
@@ -24,7 +28,6 @@ def test_get_largest_below():
     assert get_largest_prime_below(100) == 97
     assert get_largest_prime_below(20) == 19
     assert get_largest_prime_below(60) == 59
-
 
 
 """
@@ -49,7 +52,6 @@ def ani_bisecti(an_1, an_2):
 
 
 def zile_anul_nasterii(anul_nasterii, luna_nasterii, ziua_nasterii):
-
     zile_in_primul_an = 0
 
     for i in range(luna_nasterii, 12 + 1):
@@ -67,7 +69,6 @@ def zile_anul_nasterii(anul_nasterii, luna_nasterii, ziua_nasterii):
 
 
 def zile_anul_actual(anul_actual, luna_actuala, ziua_actuala):
-
     zile_in_anul_actual = 0
 
     for i in range(1, luna_actuala):
@@ -85,7 +86,6 @@ def zile_anul_actual(anul_actual, luna_actuala, ziua_actuala):
 
 
 def get_age_in_days(birthday):
-
     lista = birthday.split('/')
 
     ziua_nasterii = int(lista[0])
@@ -99,7 +99,10 @@ def get_age_in_days(birthday):
     ani_b = ani_bisecti(anul_nasterii, anul_actual) * 366
     ani_normali = (anul_actual - anul_nasterii - ani_bisecti(anul_nasterii, anul_actual) - 1) * 365
 
-    zile_intre_ani = ani_b + ani_normali + zile_anul_nasterii(anul_nasterii, luna_nasterii, ziua_nasterii) + zile_anul_actual(anul_actual, luna_actuala, ziua_actuala)
+    zile_intre_ani = ani_b + ani_normali + zile_anul_nasterii(anul_nasterii, luna_nasterii,
+                                                              ziua_nasterii) + zile_anul_actual(anul_actual,
+                                                                                                luna_actuala,
+                                                                                                ziua_actuala)
 
     return zile_intre_ani
 
@@ -110,7 +113,6 @@ def test_get_age_in_days():
     assert get_age_in_days('23/06/1969') == 19097
 
 
-
 """
 Problema 3
 """
@@ -119,8 +121,9 @@ Problema 3
 def get_leap_years(start, end):
     ani_bisecti = []
     for i in range(start, end + 1):
-        if i % 400 == 0 or i % 100 != 0 and i % 4 == 0:
-            ani_bisecti.append(i)
+        if i % 4 == 0:
+            if i % 100 == 0 or i % 400 == 0:
+                ani_bisecti.append(i)
     return ani_bisecti
 
 
@@ -128,8 +131,6 @@ def test_get_leap_years():
     assert get_leap_years(1, 10) == [4, 8]
     assert get_leap_years(2000, 2016) == [2000, 2004, 2008, 2012, 2016]
     assert get_leap_years(1882, 1906) == [1884, 1888, 1892, 1896, 1904]
-
-
 
 
 def main():
